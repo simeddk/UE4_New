@@ -1,0 +1,7 @@
+W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\Definitions.U04_Rifle.h
+W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Source\U04_Rifle\CPlayer.h
+W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
+W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
+W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
+W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
+W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\CPlayer.generated.h

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\U04_Rifle.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{1B81B595-2F8B-443B-9B06-56374CAD2427}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\U04_Rifle.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\U04_RifleEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{0EB35C75-DE26-4CEC-9444-FE032C276E6F}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\U04_Rifle">
+      <UniqueIdentifier>{0D52FA0A-948B-4F88-AE5E-54BE70B6E230}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\U04_Rifle\CPlayer.cpp">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\CPlayer.h">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\U04_Rifle\U04_Rifle.Build.cs">
+      <Filter>Source\U04_Rifle</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\U04_Rifle\U04_Rifle.cpp">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\U04_Rifle.h">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\U04_Rifle\U04_RifleGameModeBase.cpp">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\U04_RifleGameModeBase.h">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

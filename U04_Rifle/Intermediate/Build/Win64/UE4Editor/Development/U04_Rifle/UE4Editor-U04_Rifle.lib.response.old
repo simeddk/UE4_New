@@ -1,0 +1,16 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-U04_Rifle.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\U04_RifleEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\U04_Rifle.cpp.obj"
+"W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\U04_RifleGameModeBase.cpp.obj"
+"W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\U04_Rifle.init.gen.cpp.obj"
+"W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\U04_RifleGameModeBase.gen.cpp.obj"
+"W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\Default.rc2.res"
+/OUT:"W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\UE4Editor-U04_Rifle.lib"
+/INCLUDE:IMPLEMENT_MODULE_U04_Rifle
