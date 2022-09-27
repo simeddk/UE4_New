@@ -1,7 +1,7 @@
-W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\Definitions.U04_Rifle.h
-W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Source\U04_Rifle\U04_RifleGameModeBase.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Development\U04_Rifle\Definitions.U04_Rifle.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\U04_RifleGameModeBase.h
 W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
 W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
-W:\KKS\2022_03_1400\Highschool_1\Highschool-1\UE4\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\U04_RifleGameModeBase.generated.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\U04_RifleGameModeBase.generated.h

@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"W:\\KKS\\2022_03_1400\\Highschool_1\\Highschool-1\\UE4\\U04_Rifle\\Source\\U04_Rifle\\U04_Rifle.Build.cs",
-		"W:\\KKS\\2022_03_1400\\Highschool_1\\Highschool-1\\UE4\\U04_Rifle\\Source\\U04_Rifle.Target.cs",
-		"W:\\KKS\\2022_03_1400\\Highschool_1\\Highschool-1\\UE4\\U04_Rifle\\Source\\U04_RifleEditor.Target.cs"
+		"W:\\KKS\\2022_03_1400\\Highschool_1\\UE4_New\\U04_Rifle\\Source\\U04_Rifle\\U04_Rifle.Build.cs",
+		"W:\\KKS\\2022_03_1400\\Highschool_1\\UE4_New\\U04_Rifle\\Source\\U04_Rifle.Target.cs",
+		"W:\\KKS\\2022_03_1400\\Highschool_1\\UE4_New\\U04_Rifle\\Source\\U04_RifleEditor.Target.cs"
 	],
 	"EngineVersion": "4.25.4"
 }

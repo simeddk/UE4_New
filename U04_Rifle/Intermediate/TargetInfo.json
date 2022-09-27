@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "U04_Rifle",
-			"Path": "W:\\KKS\\2022_03_1400\\Highschool_1\\Highschool-1\\UE4\\U04_Rifle\\Source\\U04_Rifle.Target.cs",
+			"Path": "W:\\KKS\\2022_03_1400\\Highschool_1\\UE4_New\\U04_Rifle\\Source\\U04_Rifle.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "U04_RifleEditor",
-			"Path": "W:\\KKS\\2022_03_1400\\Highschool_1\\Highschool-1\\UE4\\U04_Rifle\\Source\\U04_RifleEditor.Target.cs",
+			"Path": "W:\\KKS\\2022_03_1400\\Highschool_1\\UE4_New\\U04_Rifle\\Source\\U04_RifleEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]

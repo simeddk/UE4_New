@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\U04_Rifle.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{1B81B595-2F8B-443B-9B06-56374CAD2427}</UniqueIdentifier>
+      <UniqueIdentifier>{760D2AEA-6FC6-4202-ACFC-4BFCDC0B97BF}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\U04_Rifle.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{0EB35C75-DE26-4CEC-9444-FE032C276E6F}</UniqueIdentifier>
+      <UniqueIdentifier>{04268911-B21E-40D2-8140-A4B054F56323}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,8 +24,26 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\U04_Rifle">
-      <UniqueIdentifier>{0D52FA0A-948B-4F88-AE5E-54BE70B6E230}</UniqueIdentifier>
+      <UniqueIdentifier>{CED5FEF5-D377-4850-BA6C-5FF530A78DA1}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\U04_Rifle\C01_Property.cpp">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\C01_Property.h">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\U04_Rifle\C02_MeshActor.cpp">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\C02_MeshActor.h">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\U04_Rifle\C02_MeshActor_Cylinder.cpp">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\C02_MeshActor_Cylinder.h">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\U04_Rifle\CPlayer.cpp">
       <Filter>Source\U04_Rifle</Filter>
     </ClCompile>
