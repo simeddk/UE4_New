@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\U04_Rifle.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{ECAFAB08-533E-4311-A419-D386FCEB13D1}</UniqueIdentifier>
+      <UniqueIdentifier>{15CA0AB6-2A3E-4608-AD46-4EE68DCADF1A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\U04_Rifle.Target.cs">
       <Filter>Source</Filter>
@@ -11,8 +11,9 @@
     <None Include="..\..\Source\U04_RifleEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\U04_Rifle.zip" />
     <Filter Include="Config">
-      <UniqueIdentifier>{1389F43D-0A11-438D-B869-5C7E109B5C0F}</UniqueIdentifier>
+      <UniqueIdentifier>{76C5E55E-5234-4681-8740-0948C22CDCCA}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,7 +25,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\U04_Rifle">
-      <UniqueIdentifier>{BCFDD8B0-FB69-458F-89D3-778FEEE57C81}</UniqueIdentifier>
+      <UniqueIdentifier>{60601DBA-7897-4E29-BCAE-F70852BB9F92}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\CPlayer.cpp">
       <Filter>Source\U04_Rifle</Filter>
@@ -44,14 +45,14 @@
     <ClInclude Include="..\..\Source\U04_Rifle\U04_Rifle.h">
       <Filter>Source\U04_Rifle</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\U04_Rifle\U04_RifleGameModeBase.cpp">
+    <ClCompile Include="..\..\Source\U04_Rifle\CGameMode.cpp">
       <Filter>Source\U04_Rifle</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\U04_Rifle\U04_RifleGameModeBase.h">
+    <ClInclude Include="..\..\Source\U04_Rifle\CGameMode.h">
       <Filter>Source\U04_Rifle</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\01_Spawn">
-      <UniqueIdentifier>{E475D257-5091-481B-BD5B-DC1D2C17849C}</UniqueIdentifier>
+      <UniqueIdentifier>{B0F8A196-E6FC-4D52-A0FC-2ADA30D2FE15}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\01_Spawn\C01_Property.cpp">
       <Filter>Source\U04_Rifle\01_Spawn</Filter>
@@ -95,10 +96,31 @@
     <ClInclude Include="..\..\Source\U04_Rifle\01_Spawn\C03_Spawner.h">
       <Filter>Source\U04_Rifle\01_Spawn</Filter>
     </ClInclude>
+    <Filter Include="Source\U04_Rifle\02_Debug">
+      <UniqueIdentifier>{441DFE95-ACB6-4C5D-B7BB-97896A5B5ABE}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\U04_Rifle\02_Debug\C01_Log.cpp">
+      <Filter>Source\U04_Rifle\02_Debug</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\02_Debug\C01_Log.h">
+      <Filter>Source\U04_Rifle\02_Debug</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\U04_Rifle\02_Debug\C02_DrawDebug.cpp">
+      <Filter>Source\U04_Rifle\02_Debug</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\02_Debug\C02_DrawDebug.h">
+      <Filter>Source\U04_Rifle\02_Debug</Filter>
+    </ClInclude>
     <Filter Include="Source\U04_Rifle\Utilities">
-      <UniqueIdentifier>{F991C375-072E-46AC-989B-896FF546D4C5}</UniqueIdentifier>
+      <UniqueIdentifier>{244993E1-B920-4FFA-BD35-88746F5183A6}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\U04_Rifle\Utilities\CHelpers.h">
+      <Filter>Source\U04_Rifle\Utilities</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\U04_Rifle\Utilities\CLog.cpp">
+      <Filter>Source\U04_Rifle\Utilities</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\Utilities\CLog.h">
       <Filter>Source\U04_Rifle\Utilities</Filter>
     </ClInclude>
   </ItemGroup>

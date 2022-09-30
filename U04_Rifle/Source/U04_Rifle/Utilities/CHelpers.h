@@ -15,4 +15,12 @@ public:
 		*OutObject = asset.Object;
 	}
 
+	template<typename T>
+	static void GetAssetDynamic(T** OutObject, FString InPath)
+	{
+		T* obj = Cast<T>(StaticLoadObject(T::StaticClass(), nullptr, *InPath));
+		verifyf(!!obj, L"Asset Not Found");
+
+		*OutObject = obj;
+	}
 };

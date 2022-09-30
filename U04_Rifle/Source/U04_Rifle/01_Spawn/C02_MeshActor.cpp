@@ -17,11 +17,26 @@ void AC02_MeshActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UObject* obj = StaticLoadObject(UMaterialInstanceConstant::StaticClass(), nullptr, L"MaterialInstanceConstant'/Game/Materials/MAT_Wall.MAT_Wall'");
 	UMaterialInstanceConstant* material;
-	material = Cast<UMaterialInstanceConstant>(obj);
+	CHelpers::GetAssetDynamic<UMaterialInstanceConstant>(&material, "MaterialInstanceConstant'/Game/Materials/MAT_Wall.MAT_Wall'");
 	
-	Mesh->SetMaterial(0, material);
+	Material = UMaterialInstanceDynamic::Create(material, this);
+	Mesh->SetMaterial(0, Material);
+
+	UKismetSystemLibrary::K2_SetTimer(this, "ChangeColor", 1.f, true);
+}
+
+void AC02_MeshActor::ChangeColor()
+{
+	FLinearColor color;
+	color.R = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f);
+	color.G = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f);
+	color.B = UKismetMathLibrary::RandomFloatInRange(0.f, 1.f);
+	color.A = 1.f;
+
+	Material->SetVectorParameterValue("BaseColor", color);
+	Material->SetScalarParameterValue("Metallic", color.R);
+	Material->SetScalarParameterValue("Roughness", color.G);
 }
 
 
