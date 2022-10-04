@@ -9,6 +9,13 @@ class U04_RIFLE_API ACPlayer : public ACharacter
 {
 	GENERATED_BODY()
 
+private:
+	UPROPERTY(VisibleAnywhere)
+		class USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere)
+		class UCameraComponent* Camera;
+
 public:
 	ACPlayer();
 
@@ -22,5 +29,12 @@ public:
 private:
 	void OnMoveForward(float Axis);
 	void OnMoveRight(float Axis);
+
+	void OnHorizontalLook(float Axis);
+	void OnVerticalLook(float Axis);
+
+private:
+	void OnRun();
+	void OffRun();
 
 };

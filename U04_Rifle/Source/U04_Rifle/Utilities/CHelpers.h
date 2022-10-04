@@ -23,4 +23,13 @@ public:
 
 		*OutObject = obj;
 	}
+
+	template<typename T>
+	static void GetClass(TSubclassOf<T>* OutClass, FString InPath)
+	{
+		ConstructorHelpers::FClassFinder<T> asset(*InPath);
+		verifyf(asset.Succeeded(), L"Class Not Found");
+
+		*OutClass = asset.Class;
+	}
 };

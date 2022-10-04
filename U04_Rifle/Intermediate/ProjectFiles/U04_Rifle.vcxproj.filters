@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\U04_Rifle.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{15CA0AB6-2A3E-4608-AD46-4EE68DCADF1A}</UniqueIdentifier>
+      <UniqueIdentifier>{D2BB7E83-9171-4712-8F51-8F87291F4A68}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\U04_Rifle.Target.cs">
       <Filter>Source</Filter>
@@ -13,7 +13,7 @@
     </None>
     <None Include="..\..\U04_Rifle.zip" />
     <Filter Include="Config">
-      <UniqueIdentifier>{76C5E55E-5234-4681-8740-0948C22CDCCA}</UniqueIdentifier>
+      <UniqueIdentifier>{790A2DF7-D88B-4C2F-9851-B5420394F597}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,9 +24,24 @@
     <None Include="..\..\Config\DefaultGame.ini">
       <Filter>Config</Filter>
     </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
     <Filter Include="Source\U04_Rifle">
-      <UniqueIdentifier>{60601DBA-7897-4E29-BCAE-F70852BB9F92}</UniqueIdentifier>
+      <UniqueIdentifier>{85B79043-4D2E-4F2E-B278-12BD43DDAA02}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\U04_Rifle\CAnimInstance.cpp">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\CAnimInstance.h">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\U04_Rifle\CGameMode.cpp">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\CGameMode.h">
+      <Filter>Source\U04_Rifle</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\U04_Rifle\CPlayer.cpp">
       <Filter>Source\U04_Rifle</Filter>
     </ClCompile>
@@ -45,14 +60,8 @@
     <ClInclude Include="..\..\Source\U04_Rifle\U04_Rifle.h">
       <Filter>Source\U04_Rifle</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\U04_Rifle\CGameMode.cpp">
-      <Filter>Source\U04_Rifle</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\U04_Rifle\CGameMode.h">
-      <Filter>Source\U04_Rifle</Filter>
-    </ClInclude>
     <Filter Include="Source\U04_Rifle\01_Spawn">
-      <UniqueIdentifier>{B0F8A196-E6FC-4D52-A0FC-2ADA30D2FE15}</UniqueIdentifier>
+      <UniqueIdentifier>{7DD3F548-DC5F-4041-AAC1-21D12C2CF639}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\01_Spawn\C01_Property.cpp">
       <Filter>Source\U04_Rifle\01_Spawn</Filter>
@@ -97,7 +106,7 @@
       <Filter>Source\U04_Rifle\01_Spawn</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\02_Debug">
-      <UniqueIdentifier>{441DFE95-ACB6-4C5D-B7BB-97896A5B5ABE}</UniqueIdentifier>
+      <UniqueIdentifier>{9C1962E7-68DE-436B-81D8-CA72145A0883}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\02_Debug\C01_Log.cpp">
       <Filter>Source\U04_Rifle\02_Debug</Filter>
@@ -111,8 +120,17 @@
     <ClInclude Include="..\..\Source\U04_Rifle\02_Debug\C02_DrawDebug.h">
       <Filter>Source\U04_Rifle\02_Debug</Filter>
     </ClInclude>
+    <Filter Include="Source\U04_Rifle\03_Collision">
+      <UniqueIdentifier>{6CC8A564-81BA-4F77-9F07-49B43653C402}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\U04_Rifle\03_Collision\C01_ActorOverap.cpp">
+      <Filter>Source\U04_Rifle\03_Collision</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\U04_Rifle\03_Collision\C01_ActorOverap.h">
+      <Filter>Source\U04_Rifle\03_Collision</Filter>
+    </ClInclude>
     <Filter Include="Source\U04_Rifle\Utilities">
-      <UniqueIdentifier>{244993E1-B920-4FFA-BD35-88746F5183A6}</UniqueIdentifier>
+      <UniqueIdentifier>{94494DFC-0916-406D-81C5-2B5F583B640B}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\U04_Rifle\Utilities\CHelpers.h">
       <Filter>Source\U04_Rifle\Utilities</Filter>
@@ -121,6 +139,9 @@
       <Filter>Source\U04_Rifle\Utilities</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\U04_Rifle\Utilities\CLog.h">
+      <Filter>Source\U04_Rifle\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\U04_Rifle\Utilities\Defines.h">
       <Filter>Source\U04_Rifle\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
