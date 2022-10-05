@@ -15,6 +15,12 @@ W:\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/PropertyAccessUtil.h
 W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\Engine/CollisionProfile.h
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CollisionProfile.generated.h
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\KismetSystemLibrary.generated.h
+W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet/GameplayStatics.h
+W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\Sound/DialogueTypes.h
+W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DialogueTypes.generated.h
+W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\Kismet\GameplayStaticsTypes.h
+W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStaticsTypes.generated.h
+W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.generated.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\Utilities/CHelpers.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\Utilities/CLog.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\Utilities/Defines.h

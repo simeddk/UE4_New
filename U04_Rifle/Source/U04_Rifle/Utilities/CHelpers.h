@@ -32,4 +32,18 @@ public:
 
 		*OutClass = asset.Class;
 	}
+
+	template<typename T>
+	static void CreateComponent(AActor* InActor, T** OutComponent, FName InName, USceneComponent* InParent = nullptr)
+	{
+		*OutComponent = InActor->CreateDefaultSubobject<T>(InName);
+
+		if (!!InParent)
+		{
+			(*OutComponent)->SetupAttachment(InParent);
+			return;
+		}
+		
+		InActor->SetRootComponent(*OutComponent);
+	}
 };
