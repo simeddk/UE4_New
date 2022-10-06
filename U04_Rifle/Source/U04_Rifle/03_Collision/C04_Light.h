@@ -36,4 +36,7 @@ private:
 
 	UFUNCTION()
 		void OffLight();
+
+	UFUNCTION()
+		FString OnRandomLight(FLinearColor InColor);
 };

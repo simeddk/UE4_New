@@ -31,11 +31,30 @@ void AC03_Trigger::ActorBeginOverlap(AActor* OverlappedActor, AActor* OtherActor
 {
 	if (OnBoxBeginOverlap.IsBound())
 		OnBoxBeginOverlap.Execute();
+
+	if (OnBoxRandomOverlap.IsBound())
+	{
+		FString str = OnBoxRandomOverlap.Execute(GetRandomColor());
+		str = FString("Return Value is...") + str;
+
+		CLog::Log(str);
+	}
 }
 
 void AC03_Trigger::ActorEndOverlap(AActor* OverlappedActor, AActor* OtherActor)
 {
 	if (OnBoxEndOverlap.IsBound())
 		OnBoxEndOverlap.Execute();
+}
+
+FLinearColor AC03_Trigger::GetRandomColor()
+{
+	FLinearColor color;
+	color.R = UKismetMathLibrary::RandomFloatInRange(0, 1);
+	color.G = UKismetMathLibrary::RandomFloatInRange(0, 1);
+	color.B = UKismetMathLibrary::RandomFloatInRange(0, 1);
+	color.A = 1.f;
+
+	return color;
 }
 

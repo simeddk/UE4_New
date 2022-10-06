@@ -41,12 +41,13 @@ void AC04_Light::BeginPlay()
 	AC03_Trigger* trigger = Cast<AC03_Trigger>(actors[0]);
 	trigger->OnBoxBeginOverlap.BindUFunction(this, "OnLight");
 	trigger->OnBoxEndOverlap.BindUFunction(this, "OffLight");
+	
+	trigger->OnBoxRandomOverlap.BindUFunction(this, "OnRandomLight");
 }
 
 void AC04_Light::OnLight()
 {
 	Light1->SetVisibility(true);
-	Light2->SetVisibility(true);
 }
 
 void AC04_Light::OffLight()
@@ -55,3 +56,10 @@ void AC04_Light::OffLight()
 	Light2->SetVisibility(false);
 }
 
+FString AC04_Light::OnRandomLight(FLinearColor InColor)
+{
+	Light2->SetVisibility(true);
+	Light2->SetLightColor(InColor);
+
+	return InColor.ToString();
+}
