@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "IRifle.h"
 #include "CPlayer.generated.h"
 
 UCLASS()
-class U04_RIFLE_API ACPlayer : public ACharacter
+class U04_RIFLE_API ACPlayer : public ACharacter, public IIRifle
 {
 	GENERATED_BODY()
 
@@ -17,7 +18,13 @@ private:
 		class UCameraComponent* Camera;
 
 public:
+	FORCEINLINE class ACRifle* GetRifle() override { return Rifle; }
+
+public:
 	ACPlayer();
+
+	UFUNCTION(BlueprintCallable)
+		void SetBodyColor(FLinearColor InBodyColor, FLinearColor InLogoColor);
 
 protected:
 	virtual void BeginPlay() override;
@@ -37,4 +44,12 @@ private:
 	void OnRun();
 	void OffRun();
 
+	void OnRifle();
+
+private:
+	class UMaterialInstanceDynamic* BodyMaterial;
+	class UMaterialInstanceDynamic* LogoMaterial;
+
+private:
+	class ACRifle* Rifle;
 };

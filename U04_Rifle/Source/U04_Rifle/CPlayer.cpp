@@ -1,10 +1,13 @@
 #include "CPlayer.h"
 #include "Global.h"
+#include "CRifle.h"
 #include "CAnimInstance.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Materials/MaterialInstanceConstant.h"
+#include "Materials/MaterialInstanceDynamic.h"
 
 ACPlayer::ACPlayer()
 {
@@ -37,10 +40,24 @@ ACPlayer::ACPlayer()
 	SpringArm->bUsePawnControlRotation = true;
 }
 
+
 void ACPlayer::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	UMaterialInstanceConstant* bodyMaterial;
+	CHelpers::GetAssetDynamic<UMaterialInstanceConstant>(&bodyMaterial,"MaterialInstanceConstant'/Game/Materials/M_UE4Man_Body_Inst.M_UE4Man_Body_Inst'");
+
+	UMaterialInstanceConstant* logoMaterial;
+	CHelpers::GetAssetDynamic<UMaterialInstanceConstant>(&logoMaterial, "MaterialInstanceConstant'/Game/Materials/M_UE4Man_ChestLogo_Inst.M_UE4Man_ChestLogo_Inst'");
+
+	BodyMaterial =  UMaterialInstanceDynamic::Create(bodyMaterial, this);
+	LogoMaterial =  UMaterialInstanceDynamic::Create(logoMaterial, this);
+
+	GetMesh()->SetMaterial(0, BodyMaterial);
+	GetMesh()->SetMaterial(1, LogoMaterial);
+
+	Rifle = ACRifle::Spawn(GetWorld(), this);
 }
 
 void ACPlayer::Tick(float DeltaTime)
@@ -61,6 +78,8 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAction("Run", EInputEvent::IE_Pressed, this, &ACPlayer::OnRun);
 	PlayerInputComponent->BindAction("Run", EInputEvent::IE_Released, this, &ACPlayer::OffRun);
+	
+	PlayerInputComponent->BindAction("Rifle", EInputEvent::IE_Pressed, this, &ACPlayer::OnRifle);
 }
 
 void ACPlayer::OnMoveForward(float Axis)
@@ -97,4 +116,22 @@ void ACPlayer::OnRun()
 void ACPlayer::OffRun()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
+}
+
+void ACPlayer::OnRifle()
+{
+	if (Rifle->GetEquipped())
+	{
+		Rifle->Unequip();
+		return;
+	}
+
+	Rifle->Equip();
+}
+
+
+void ACPlayer::SetBodyColor(FLinearColor InBodyColor, FLinearColor InLogoColor)
+{
+	BodyMaterial->SetVectorParameterValue("BodyColor", InBodyColor);
+	LogoMaterial->SetVectorParameterValue("BodyColor", InLogoColor);
 }

@@ -4,6 +4,8 @@ W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
 W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\IRifle.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\IRifle.generated.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\CPlayer.generated.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\Global.h
 W:\UE_4.25\Engine\Source\Runtime\Engine\Public\DrawDebugHelpers.h
@@ -24,6 +26,8 @@ W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameplayStatics.
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\Utilities/CHelpers.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\Utilities/CLog.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\Utilities/Defines.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\CRifle.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\CRifle.generated.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\CAnimInstance.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\CAnimInstance.generated.h
 W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\GameFramework/SpringArmComponent.h
@@ -50,3 +54,5 @@ W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ShapeComponent.g
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CapsuleComponent.generated.h
 W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h
+W:\UE_4.25\Engine\Source\Runtime\Engine\Classes\Materials/MaterialInstanceConstant.h
+W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\MaterialInstanceConstant.generated.h

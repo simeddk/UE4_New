@@ -17,11 +17,63 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 	U04_RIFLE_API UClass* Z_Construct_UClass_ACPlayer();
 	ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 	UPackage* Z_Construct_UPackage__Script_U04_Rifle();
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FLinearColor();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
+	U04_RIFLE_API UClass* Z_Construct_UClass_UIRifle_NoRegister();
 // End Cross Module References
+	DEFINE_FUNCTION(ACPlayer::execSetBodyColor)
+	{
+		P_GET_STRUCT(FLinearColor,Z_Param_InBodyColor);
+		P_GET_STRUCT(FLinearColor,Z_Param_InLogoColor);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SetBodyColor(Z_Param_InBodyColor,Z_Param_InLogoColor);
+		P_NATIVE_END;
+	}
 	void ACPlayer::StaticRegisterNativesACPlayer()
 	{
+		UClass* Class = ACPlayer::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "SetBodyColor", &ACPlayer::execSetBodyColor },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics
+	{
+		struct CPlayer_eventSetBodyColor_Parms
+		{
+			FLinearColor InBodyColor;
+			FLinearColor InLogoColor;
+		};
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_InLogoColor;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_InBodyColor;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::NewProp_InLogoColor = { "InLogoColor", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CPlayer_eventSetBodyColor_Parms, InLogoColor), Z_Construct_UScriptStruct_FLinearColor, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::NewProp_InBodyColor = { "InBodyColor", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(CPlayer_eventSetBodyColor_Parms, InBodyColor), Z_Construct_UScriptStruct_FLinearColor, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::NewProp_InLogoColor,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::NewProp_InBodyColor,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "CPlayer.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACPlayer, nullptr, "SetBodyColor", nullptr, nullptr, sizeof(CPlayer_eventSetBodyColor_Parms), Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04820401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ACPlayer_SetBodyColor()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ACPlayer_SetBodyColor_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	UClass* Z_Construct_UClass_ACPlayer_NoRegister()
 	{
@@ -30,6 +82,7 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 	struct Z_Construct_UClass_ACPlayer_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -42,12 +95,16 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_SpringArm;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UE4CodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_ACPlayer_Statics::DependentSingletons[])() = {
 		(UObject* (*)())Z_Construct_UClass_ACharacter,
 		(UObject* (*)())Z_Construct_UPackage__Script_U04_Rifle,
+	};
+	const FClassFunctionLinkInfo Z_Construct_UClass_ACPlayer_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_ACPlayer_SetBodyColor, "SetBodyColor" }, // 2572349118
 	};
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPlayer_Statics::Class_MetaDataParams[] = {
@@ -76,6 +133,9 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPlayer_Statics::NewProp_Camera,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPlayer_Statics::NewProp_SpringArm,
 	};
+		const UE4CodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_ACPlayer_Statics::InterfaceParams[] = {
+			{ Z_Construct_UClass_UIRifle_NoRegister, (int32)VTABLE_OFFSET(ACPlayer, IIRifle), false },
+		};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ACPlayer_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ACPlayer>::IsAbstract,
 	};
@@ -84,13 +144,13 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 		"Game",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_ACPlayer_Statics::PropPointers,
-		nullptr,
+		InterfaceParams,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_ACPlayer_Statics::PropPointers),
-		0,
+		UE_ARRAY_COUNT(InterfaceParams),
 		0x009000A4u,
 		METADATA_PARAMS(Z_Construct_UClass_ACPlayer_Statics::Class_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UClass_ACPlayer_Statics::Class_MetaDataParams))
 	};
@@ -103,7 +163,7 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACPlayer, 3197878940);
+	IMPLEMENT_CLASS(ACPlayer, 9029695);
 	template<> U04_RIFLE_API UClass* StaticClass<ACPlayer>()
 	{
 		return ACPlayer::StaticClass();
