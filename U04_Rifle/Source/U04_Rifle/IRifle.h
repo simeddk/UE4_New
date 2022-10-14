@@ -16,4 +16,8 @@ class U04_RIFLE_API IIRifle
 
 public:
 	virtual class ACRifle* GetRifle() = 0;
+	virtual void GetAimRay(FVector& OutAimStart, FVector& OutAimEnd, FVector& OutAimDirection) = 0;
+
+	virtual void OnFocus() {};
+	virtual void OffFocus() {};
 };

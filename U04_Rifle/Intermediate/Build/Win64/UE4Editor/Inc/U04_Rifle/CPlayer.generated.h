@@ -25,6 +25,8 @@ struct FLinearColor;
 	DECLARE_FUNCTION(execSetBodyColor);
 
 
+#define U04_Rifle_Source_U04_Rifle_CPlayer_h_11_EVENT_PARMS
+#define U04_Rifle_Source_U04_Rifle_CPlayer_h_11_CALLBACK_WRAPPERS
 #define U04_Rifle_Source_U04_Rifle_CPlayer_h_11_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACPlayer(); \
@@ -70,17 +72,23 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ACPlayer); \
 
 
 #define U04_Rifle_Source_U04_Rifle_CPlayer_h_11_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__CrossDotWidgetClass() { return STRUCT_OFFSET(ACPlayer, CrossDotWidgetClass); } \
+	FORCEINLINE static uint32 __PPO__CameraShakeClass() { return STRUCT_OFFSET(ACPlayer, CameraShakeClass); } \
 	FORCEINLINE static uint32 __PPO__SpringArm() { return STRUCT_OFFSET(ACPlayer, SpringArm); } \
 	FORCEINLINE static uint32 __PPO__Camera() { return STRUCT_OFFSET(ACPlayer, Camera); }
 
 
-#define U04_Rifle_Source_U04_Rifle_CPlayer_h_8_PROLOG
+#define U04_Rifle_Source_U04_Rifle_CPlayer_h_8_PROLOG \
+	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_EVENT_PARMS
+
+
 #define U04_Rifle_Source_U04_Rifle_CPlayer_h_11_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_PRIVATE_PROPERTY_OFFSET \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_SPARSE_DATA \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_RPC_WRAPPERS \
+	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_CALLBACK_WRAPPERS \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_INCLASS \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_STANDARD_CONSTRUCTORS \
 public: \
@@ -93,6 +101,7 @@ public: \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_PRIVATE_PROPERTY_OFFSET \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_SPARSE_DATA \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_CALLBACK_WRAPPERS \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_INCLASS_NO_PURE_DECLS \
 	U04_Rifle_Source_U04_Rifle_CPlayer_h_11_ENHANCED_CONSTRUCTORS \
 private: \

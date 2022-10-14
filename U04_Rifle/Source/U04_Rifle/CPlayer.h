@@ -11,14 +11,32 @@ class U04_RIFLE_API ACPlayer : public ACharacter, public IIRifle
 	GENERATED_BODY()
 
 private:
+	UPROPERTY(EditDefaultsOnly, Category = "Widget")
+		TSubclassOf<class UCUserWidget_CrossDot> CrossDotWidgetClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Shake")
+		TSubclassOf<class UCameraShake> CameraShakeClass;
+
 	UPROPERTY(VisibleAnywhere)
 		class USpringArmComponent* SpringArm;
 
-	UPROPERTY(VisibleAnywhere)
+protected:
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 		class UCameraComponent* Camera;
+
+protected:
+	UFUNCTION(BlueprintImplementableEvent)
+		void ZoomIn();
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void ZoomOut();
 
 public:
 	FORCEINLINE class ACRifle* GetRifle() override { return Rifle; }
+
+	void GetAimRay(FVector& OutAimStart, FVector& OutAimEnd, FVector& OutAimDirection) override;
+	void OnFocus() override;
+	void OffFocus() override;
 
 public:
 	ACPlayer();
@@ -45,6 +63,10 @@ private:
 	void OffRun();
 
 	void OnRifle();
+	void OnAim();
+	void OffAim();
+	void OnFire();
+	void OffFire();
 
 private:
 	class UMaterialInstanceDynamic* BodyMaterial;
@@ -52,4 +74,5 @@ private:
 
 private:
 	class ACRifle* Rifle;
+	class UCUserWidget_CrossDot* CrossDotWidget;
 };

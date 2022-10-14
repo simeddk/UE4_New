@@ -32,12 +32,27 @@ public:
 public:
 	FORCEINLINE bool GetEquipped() { return bEquipped; }
 	FORCEINLINE bool GetEquipping() { return bEquipping; }
+	FORCEINLINE bool GetAiming() { return bAiming; }
 
 public:	
 	ACRifle();
 
 	void Equip();
+	void Begin_Equip();
+	void End_Equip();
+
 	void Unequip();
+	void Begin_Unequip();
+	void End_Unequip();
+
+	void Begin_Aim();
+	void End_Aim();
+
+	void Begin_Fire();
+	void End_Fire();
+
+	UFUNCTION()
+		void Firing();
 
 protected:
 	virtual void BeginPlay() override;
@@ -50,4 +65,6 @@ private:
 
 	bool bEquipped;
 	bool bEquipping;
+	bool bAiming;
+	bool bFiring;
 };
