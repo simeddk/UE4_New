@@ -1,9 +1,14 @@
 #include "CRifle.h"
 #include "Global.h"
 #include "IRifle.h"
+#include "CPlayer.h"
+#include "CBullet.h"
 #include "GameFramework/Character.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Engine/StaticMeshActor.h"
+#include "Sound/SoundCue.h"
+#include "Particles/ParticleSystem.h"
+#include "Materials/MaterialInstanceConstant.h"
 
 ACRifle* ACRifle::Spawn(UWorld* InWorld, ACharacter* InOwner)
 {
@@ -24,6 +29,14 @@ ACRifle::ACRifle()
 
 	CHelpers::GetAsset<UAnimMontage>(&GrabMontage, "AnimMontage'/Game/Character/Animations/Rifle_Grab_Montage.Rifle_Grab_Montage'");
 	CHelpers::GetAsset<UAnimMontage>(&UngrabMontage, "AnimMontage'/Game/Character/Animations/Rifle_Ungrab_Montage.Rifle_Ungrab_Montage'");
+	CHelpers::GetClass<UCameraShake>(&CameraShakeClass, "Blueprint'/Game/BP_CameraShake.BP_CameraShake_C'");
+	CHelpers::GetClass<ACBullet>(&BulletClass, "Blueprint'/Game/BP_CBullet.BP_CBullet_C'");
+
+	CHelpers::GetAsset<UParticleSystem>(&FlashParticle, "ParticleSystem'/Game/Particles_Rifle/Particles/VFX_Muzzleflash.VFX_Muzzleflash'");
+	CHelpers::GetAsset<UParticleSystem>(&EjectParticle, "ParticleSystem'/Game/Particles_Rifle/Particles/VFX_Eject_bullet.VFX_Eject_bullet'");
+	CHelpers::GetAsset<UParticleSystem>(&ImpactParticle, "ParticleSystem'/Game/Particles_Rifle/Particles/VFX_Impact_Default.VFX_Impact_Default'");
+	CHelpers::GetAsset<USoundCue>(&FireSoundCue, "SoundCue'/Game/Sounds/S_RifleShoot_Cue.S_RifleShoot_Cue'");
+	CHelpers::GetAsset<UMaterialInstanceConstant>(&DecalMaterial, "MaterialInstanceConstant'/Game/Materials/M_Decal_Inst.M_Decal_Inst'");
 }
 
 void ACRifle::BeginPlay()
@@ -158,12 +171,21 @@ void ACRifle::Begin_Fire()
 
 	bFiring = true;
 
+	if (bAutoFire == true)
+	{
+		GetWorld()->GetTimerManager().SetTimer(AutoFireTimer, this, &ACRifle::Firing, 0.1f, true, 0.f);
+		return;
+	}
+
 	Firing();
 }
 
 void ACRifle::End_Fire()
 {
 	bFiring = false;
+	
+	if (bAutoFire == true)
+		GetWorld()->GetTimerManager().ClearTimer(AutoFireTimer);
 }
 
 void ACRifle::Firing()
@@ -171,14 +193,44 @@ void ACRifle::Firing()
 	IIRifle* rifleCharacter = Cast<IIRifle>(OwnerCharacter);
 	CheckNull(rifleCharacter);
 
+	ACPlayer* player = Cast<ACPlayer>(OwnerCharacter);
+	if (!!player)
+	{
+		APlayerController* controller = player->GetController<APlayerController>();
+		controller->PlayerCameraManager->PlayCameraShake(CameraShakeClass);
+	}
+
 	FVector start, end, direction;
 	rifleCharacter->GetAimRay(start, end, direction);
+
+	FVector muzzleLocation = Mesh->GetSocketLocation("MuzzleFlash");
+	GetWorld()->SpawnActor<ACBullet>(BulletClass, muzzleLocation, direction.Rotation());
+
+	UGameplayStatics::SpawnEmitterAttached(FlashParticle, Mesh, "MuzzleFlash");
+	UGameplayStatics::SpawnEmitterAttached(EjectParticle, Mesh, "EjectBullet");
+	UGameplayStatics::PlaySoundAtLocation(GetWorld(), FireSoundCue, muzzleLocation);
 
 	FCollisionQueryParams params;
 	params.AddIgnoredActor(this);
 	params.AddIgnoredActor(OwnerCharacter);
 
 	FHitResult hitResult;
+	if (GetWorld()->LineTraceSingleByChannel
+	(
+		hitResult,
+		start,
+		end,
+		ECollisionChannel::ECC_Visibility,
+		params
+	))
+	{
+		FRotator decalRotator = hitResult.ImpactNormal.Rotation();
+		UGameplayStatics::SpawnDecalAtLocation(GetWorld(), DecalMaterial, FVector(5), hitResult.Location, decalRotator, 10.f);
+		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ImpactParticle, hitResult.Location, decalRotator);
+	}
+
+	
+
 	if (GetWorld()->LineTraceSingleByChannel
 	(
 		hitResult,

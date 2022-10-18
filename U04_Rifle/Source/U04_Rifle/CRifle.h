@@ -22,6 +22,27 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Rifle")
 		class UAnimMontage* UngrabMontage;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Shake")
+		TSubclassOf<class UCameraShake> CameraShakeClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Bullet")
+		TSubclassOf<class ACBullet> BulletClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Effect")
+		class UParticleSystem* FlashParticle;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Effect")
+		class UParticleSystem* EjectParticle;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Effect")
+		class UParticleSystem* ImpactParticle;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Effect")
+		class USoundCue* FireSoundCue;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Effect")
+		class UMaterialInstanceConstant* DecalMaterial;
+
 private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class USkeletalMeshComponent* Mesh;
@@ -67,4 +88,7 @@ private:
 	bool bEquipping;
 	bool bAiming;
 	bool bFiring;
+	bool bAutoFire;
+
+	FTimerHandle AutoFireTimer;
 };

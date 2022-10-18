@@ -21,7 +21,6 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-	ENGINE_API UClass* Z_Construct_UClass_UCameraShake_NoRegister();
 	U04_RIFLE_API UClass* Z_Construct_UClass_UCUserWidget_CrossDot_NoRegister();
 	U04_RIFLE_API UClass* Z_Construct_UClass_UIRifle_NoRegister();
 // End Cross Module References
@@ -152,10 +151,6 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_SpringArm;
 #if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CameraShakeClass_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FClassPropertyParams NewProp_CameraShakeClass;
-#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_CrossDotWidgetClass_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_CrossDotWidgetClass;
@@ -197,13 +192,6 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ACPlayer_Statics::NewProp_SpringArm = { "SpringArm", nullptr, (EPropertyFlags)0x00400000000a0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPlayer, SpringArm), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ACPlayer_Statics::NewProp_SpringArm_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPlayer_Statics::NewProp_SpringArm_MetaData)) };
 #if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPlayer_Statics::NewProp_CameraShakeClass_MetaData[] = {
-		{ "Category", "Shake" },
-		{ "ModuleRelativePath", "CPlayer.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ACPlayer_Statics::NewProp_CameraShakeClass = { "CameraShakeClass", nullptr, (EPropertyFlags)0x0044000000010001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ACPlayer, CameraShakeClass), Z_Construct_UClass_UCameraShake_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ACPlayer_Statics::NewProp_CameraShakeClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ACPlayer_Statics::NewProp_CameraShakeClass_MetaData)) };
-#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ACPlayer_Statics::NewProp_CrossDotWidgetClass_MetaData[] = {
 		{ "Category", "Widget" },
 		{ "ModuleRelativePath", "CPlayer.h" },
@@ -213,7 +201,6 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ACPlayer_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPlayer_Statics::NewProp_Camera,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPlayer_Statics::NewProp_SpringArm,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPlayer_Statics::NewProp_CameraShakeClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ACPlayer_Statics::NewProp_CrossDotWidgetClass,
 	};
 		const UE4CodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_ACPlayer_Statics::InterfaceParams[] = {
@@ -246,7 +233,7 @@ void EmptyLinkFunctionForGeneratedCodeCPlayer() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ACPlayer, 280334021);
+	IMPLEMENT_CLASS(ACPlayer, 1951010498);
 	template<> U04_RIFLE_API UClass* StaticClass<ACPlayer>()
 	{
 		return ACPlayer::StaticClass();

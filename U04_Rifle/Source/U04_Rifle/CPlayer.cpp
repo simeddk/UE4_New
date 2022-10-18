@@ -42,7 +42,7 @@ ACPlayer::ACPlayer()
 	SpringArm->SocketOffset = FVector(0, 60, 0);
 
 	CHelpers::GetClass<UCUserWidget_CrossDot>(&CrossDotWidgetClass, "WidgetBlueprint'/Game/Widgets/WB_CrossDot.WB_CrossDot_C'");
-	CHelpers::GetClass<UCameraShake>(&CameraShakeClass, "Blueprint'/Game/BP_CameraShake.BP_CameraShake_C'");
+	
 }
 
 

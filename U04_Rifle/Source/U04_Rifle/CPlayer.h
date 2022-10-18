@@ -14,8 +14,6 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Widget")
 		TSubclassOf<class UCUserWidget_CrossDot> CrossDotWidgetClass;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Shake")
-		TSubclassOf<class UCameraShake> CameraShakeClass;
 
 	UPROPERTY(VisibleAnywhere)
 		class USpringArmComponent* SpringArm;
