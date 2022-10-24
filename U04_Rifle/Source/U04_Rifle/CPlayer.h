@@ -14,6 +14,9 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Widget")
 		TSubclassOf<class UCUserWidget_CrossDot> CrossDotWidgetClass;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Widget")
+		TSubclassOf<class UCUserWidget_AutoFire> AutoFireWidgetClass;
+
 
 	UPROPERTY(VisibleAnywhere)
 		class USpringArmComponent* SpringArm;
@@ -65,6 +68,8 @@ private:
 	void OffAim();
 	void OnFire();
 	void OffFire();
+	void OnAutoFire();
+
 
 private:
 	class UMaterialInstanceDynamic* BodyMaterial;
@@ -73,4 +78,5 @@ private:
 private:
 	class ACRifle* Rifle;
 	class UCUserWidget_CrossDot* CrossDotWidget;
+	class UCUserWidget_AutoFire* AutoFireWidget;
 };

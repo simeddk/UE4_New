@@ -171,6 +171,8 @@ void ACRifle::Begin_Fire()
 
 	bFiring = true;
 
+	Pitch = 0.f;
+
 	if (bAutoFire == true)
 	{
 		GetWorld()->GetTimerManager().SetTimer(AutoFireTimer, this, &ACRifle::Firing, 0.1f, true, 0.f);
@@ -213,6 +215,11 @@ void ACRifle::Firing()
 	FCollisionQueryParams params;
 	params.AddIgnoredActor(this);
 	params.AddIgnoredActor(OwnerCharacter);
+
+	Pitch -= LimitPitch * GetWorld()->GetDeltaSeconds();
+
+	if (Pitch > -LimitPitch)
+		OwnerCharacter->AddControllerPitchInput(Pitch);
 
 	FHitResult hitResult;
 	if (GetWorld()->LineTraceSingleByChannel

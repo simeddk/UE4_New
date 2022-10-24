@@ -286,7 +286,6 @@
     <None Include="..\..\U04_Rifle.uproject"/>
     <None Include="..\..\Source\U04_Rifle.Target.cs"/>
     <None Include="..\..\Source\U04_RifleEditor.Target.cs"/>
-    <None Include="..\..\U04_Rifle.zip"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
     <None Include="..\..\Config\DefaultGame.ini"/>

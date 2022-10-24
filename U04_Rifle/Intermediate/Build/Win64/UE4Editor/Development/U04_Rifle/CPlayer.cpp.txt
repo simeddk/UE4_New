@@ -175,3 +175,5 @@ W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\DynamicPropertyPath
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\WidgetBlueprintGeneratedClass.generated.h
 W:\UE_4.25\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UMG\UserWidget.generated.h
 W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\CUserWidget_CrossDot.generated.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Source\U04_Rifle\Widgets/CUserWidget_AutoFire.h
+W:\KKS\2022_03_1400\Highschool_1\UE4_New\U04_Rifle\Intermediate\Build\Win64\UE4Editor\Inc\U04_Rifle\CUserWidget_AutoFire.generated.h

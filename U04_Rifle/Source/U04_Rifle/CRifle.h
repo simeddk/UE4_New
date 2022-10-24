@@ -11,6 +11,9 @@ class U04_RIFLE_API ACRifle : public AActor
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Rifle")
+		float LimitPitch = 0.25f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Rifle")
 		FName HolsterSocket = "Holster_Rifle";
 
 	UPROPERTY(EditDefaultsOnly, Category = "Rifle")
@@ -54,6 +57,9 @@ public:
 	FORCEINLINE bool GetEquipped() { return bEquipped; }
 	FORCEINLINE bool GetEquipping() { return bEquipping; }
 	FORCEINLINE bool GetAiming() { return bAiming; }
+	FORCEINLINE bool GetAutoFire() { return bAutoFire; }
+	FORCEINLINE bool GetFiring() { return bFiring; }
+	FORCEINLINE void ToggleAutoFire() { bAutoFire = !bAutoFire; }
 
 public:	
 	ACRifle();
@@ -91,4 +97,6 @@ private:
 	bool bAutoFire;
 
 	FTimerHandle AutoFireTimer;
+
+	float Pitch;
 };

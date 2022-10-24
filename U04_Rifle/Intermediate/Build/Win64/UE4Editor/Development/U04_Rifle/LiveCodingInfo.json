@@ -27,17 +27,17 @@
 			"C04_Explosion.cpp.obj",
 			"C05_ExplosionTrigger.cpp.obj",
 			"CAnimInstance.cpp.obj",
+			"CBullet.cpp.obj",
 			"CGameMode.cpp.obj",
 			"IRifle.cpp.obj",
 			"CAnimNotifyState_Equip.cpp.obj",
 			"CAnimNotifyState_Unequip.cpp.obj",
 			"U04_Rifle.cpp.obj",
 			"CLog.cpp.obj",
+			"CUserWidget_AutoFire.cpp.obj",
 			"CUserWidget_CrossDot.cpp.obj",
-			"CBullet.cpp.obj",
 			"CPlayer.cpp.obj",
-			"CRifle.cpp.obj",
-			"CUserWidget_AutoFire.cpp.obj"
+			"CRifle.cpp.obj"
 		],
 		"Module.U04_Rifle.gen.cpp.obj": [
 			"C01_ActorOverap.gen.cpp.obj",

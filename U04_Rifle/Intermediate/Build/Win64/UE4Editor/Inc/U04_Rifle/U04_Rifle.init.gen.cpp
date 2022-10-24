@@ -25,7 +25,7 @@ void EmptyLinkFunctionForGeneratedCodeU04_Rifle_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xA069B348,
+				0xA9E5BBE8,
 				0x41C43A21,
 				METADATA_PARAMS(nullptr, 0)
 			};

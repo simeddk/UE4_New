@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\U04_Rifle.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{48A43027-782A-4771-8CDD-E9FAF09CDF66}</UniqueIdentifier>
+      <UniqueIdentifier>{3BAD9735-2B70-41EB-B4B3-CB2877FC018E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\U04_Rifle.Target.cs">
       <Filter>Source</Filter>
@@ -11,9 +11,8 @@
     <None Include="..\..\Source\U04_RifleEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
-    <None Include="..\..\U04_Rifle.zip" />
     <Filter Include="Config">
-      <UniqueIdentifier>{F6FDAA4D-0BB5-46FA-8BBD-57012B1FA466}</UniqueIdentifier>
+      <UniqueIdentifier>{40100A4B-9030-433F-8B19-91508EBC1E83}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -28,7 +27,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\U04_Rifle">
-      <UniqueIdentifier>{0E8D2817-0B45-40E4-AC1C-0948E40E27B7}</UniqueIdentifier>
+      <UniqueIdentifier>{9E2AB044-6A5B-44B0-B571-671CA23CD635}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\CAnimInstance.cpp">
       <Filter>Source\U04_Rifle</Filter>
@@ -79,7 +78,7 @@
       <Filter>Source\U04_Rifle</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\01_Spawn">
-      <UniqueIdentifier>{BF1F989C-E466-491D-AA73-5D3B592EDE96}</UniqueIdentifier>
+      <UniqueIdentifier>{632D70BC-F4C8-434C-B940-BF4FD283A508}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\01_Spawn\C01_Property.cpp">
       <Filter>Source\U04_Rifle\01_Spawn</Filter>
@@ -124,7 +123,7 @@
       <Filter>Source\U04_Rifle\01_Spawn</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\02_Debug">
-      <UniqueIdentifier>{96EB1924-9673-4D78-B2EA-0EF5BE43737B}</UniqueIdentifier>
+      <UniqueIdentifier>{2C661D49-ED47-475D-A18C-71B8A4CA1D3A}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\02_Debug\C01_Log.cpp">
       <Filter>Source\U04_Rifle\02_Debug</Filter>
@@ -139,7 +138,7 @@
       <Filter>Source\U04_Rifle\02_Debug</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\03_Collision">
-      <UniqueIdentifier>{F352BEF9-AC45-455A-80C8-2B6B66D73FAB}</UniqueIdentifier>
+      <UniqueIdentifier>{A35B8577-28E3-4CC7-84ED-97EBCD985F77}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\03_Collision\C01_ActorOverap.cpp">
       <Filter>Source\U04_Rifle\03_Collision</Filter>
@@ -202,7 +201,7 @@
       <Filter>Source\U04_Rifle\03_Collision</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\04_Trace">
-      <UniqueIdentifier>{BB6FB9F1-74E0-4E7D-9E15-706D9C348A95}</UniqueIdentifier>
+      <UniqueIdentifier>{5B34614D-E5FD-4279-BF94-3675372D5E43}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\04_Trace\C01_Point.cpp">
       <Filter>Source\U04_Rifle\04_Trace</Filter>
@@ -235,7 +234,7 @@
       <Filter>Source\U04_Rifle\04_Trace</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\Notifies">
-      <UniqueIdentifier>{E45B1784-4500-42DF-A41A-3EF3A80D7996}</UniqueIdentifier>
+      <UniqueIdentifier>{47E10628-CD54-4E76-A583-23D12C5443C7}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\Notifies\CAnimNotifyState_Equip.cpp">
       <Filter>Source\U04_Rifle\Notifies</Filter>
@@ -250,7 +249,7 @@
       <Filter>Source\U04_Rifle\Notifies</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\Utilities">
-      <UniqueIdentifier>{A9638C7D-10A9-4E24-9D10-5904555ACAF7}</UniqueIdentifier>
+      <UniqueIdentifier>{1255E38B-E50D-4083-86F4-FB45CCA374ED}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\U04_Rifle\Utilities\CHelpers.h">
       <Filter>Source\U04_Rifle\Utilities</Filter>
@@ -265,7 +264,7 @@
       <Filter>Source\U04_Rifle\Utilities</Filter>
     </ClInclude>
     <Filter Include="Source\U04_Rifle\Widgets">
-      <UniqueIdentifier>{869D2914-30F0-44BC-8FEB-AAC4C4EEE477}</UniqueIdentifier>
+      <UniqueIdentifier>{975F76BB-2057-4DC2-B4AA-211D78C8026A}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\U04_Rifle\Widgets\CUserWidget_AutoFire.cpp">
       <Filter>Source\U04_Rifle\Widgets</Filter>

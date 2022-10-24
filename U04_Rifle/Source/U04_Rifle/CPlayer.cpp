@@ -9,6 +9,7 @@
 #include "Materials/MaterialInstanceConstant.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Widgets/CUserWidget_CrossDot.h"
+#include "Widgets/CUserWidget_AutoFire.h"
 
 ACPlayer::ACPlayer()
 {
@@ -42,6 +43,7 @@ ACPlayer::ACPlayer()
 	SpringArm->SocketOffset = FVector(0, 60, 0);
 
 	CHelpers::GetClass<UCUserWidget_CrossDot>(&CrossDotWidgetClass, "WidgetBlueprint'/Game/Widgets/WB_CrossDot.WB_CrossDot_C'");
+	CHelpers::GetClass<UCUserWidget_AutoFire>(&AutoFireWidgetClass, "WidgetBlueprint'/Game/Widgets/WB_AutoFire.WB_AutoFire_C'");
 	
 }
 
@@ -68,8 +70,10 @@ void ACPlayer::BeginPlay()
 
 	CrossDotWidget = CreateWidget<UCUserWidget_CrossDot, APlayerController>(GetController<APlayerController>(), CrossDotWidgetClass);
 	CrossDotWidget->AddToViewport();
-
 	CrossDotWidget->SetVisibility(ESlateVisibility::Hidden);
+
+	AutoFireWidget = CreateWidget<UCUserWidget_AutoFire, APlayerController>(GetController<APlayerController>(), AutoFireWidgetClass);
+	AutoFireWidget->AddToViewport();
 }
 
 void ACPlayer::Tick(float DeltaTime)
@@ -92,10 +96,14 @@ void ACPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction("Run", EInputEvent::IE_Released, this, &ACPlayer::OffRun);
 	
 	PlayerInputComponent->BindAction("Rifle", EInputEvent::IE_Pressed, this, &ACPlayer::OnRifle);
+	
 	PlayerInputComponent->BindAction("Aim", EInputEvent::IE_Pressed, this, &ACPlayer::OnAim);
 	PlayerInputComponent->BindAction("Aim", EInputEvent::IE_Released, this, &ACPlayer::OffAim);
+	
 	PlayerInputComponent->BindAction("Fire", EInputEvent::IE_Pressed, this, &ACPlayer::OnFire);
 	PlayerInputComponent->BindAction("Fire", EInputEvent::IE_Released, this, &ACPlayer::OffFire);
+
+	PlayerInputComponent->BindAction("AutoFire", EInputEvent::IE_Pressed, this, &ACPlayer::OnAutoFire);
 }
 
 void ACPlayer::OnMoveForward(float Axis)
@@ -168,6 +176,7 @@ void ACPlayer::OffAim()
 {
 	CheckFalse(Rifle->GetEquipped());
 	CheckTrue(Rifle->GetEquipping());
+	CheckTrue(Rifle->GetFiring());
 
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
@@ -190,6 +199,15 @@ void ACPlayer::OnFire()
 void ACPlayer::OffFire()
 {
 	Rifle->End_Fire();
+}
+
+void ACPlayer::OnAutoFire()
+{
+	CheckTrue(Rifle->GetFiring());
+
+	Rifle->ToggleAutoFire();
+
+	Rifle->GetAutoFire() ? AutoFireWidget->OnAutoFire() : AutoFireWidget->OffAutoFire();
 }
 
 void ACPlayer::SetBodyColor(FLinearColor InBodyColor, FLinearColor InLogoColor)
