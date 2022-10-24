@@ -5,6 +5,14 @@ ACMovingPlatform::ACMovingPlatform()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SetMobility(EComponentMobility::Movable);
+
+	ConstructorHelpers::FObjectFinder<UStaticMesh> mesh(TEXT("StaticMesh'/Game/Geometry/Meshes/1M_Cube.1M_Cube'"));
+	if (mesh.Succeeded())
+		GetStaticMeshComponent()->SetStaticMesh(mesh.Object);
+
+	ConstructorHelpers::FObjectFinder<UMaterial> material(TEXT("Material'/Game/Materials/MAT_Platform.MAT_Platform'"));
+	if (material.Succeeded())
+		GetStaticMeshComponent()->SetMaterial(0, material.Object);
 }
 
 void ACMovingPlatform::BeginPlay()
@@ -16,6 +24,9 @@ void ACMovingPlatform::BeginPlay()
 		SetReplicates(true);
 		SetReplicateMovement(true);
 	}
+
+	GlobalStartLocation = GetActorLocation();
+	GlobalTargetLocation = GetTransform().TransformPosition(TargetLocation);
 }
 
 void ACMovingPlatform::Tick(float DeltaTime)
@@ -26,8 +37,17 @@ void ACMovingPlatform::Tick(float DeltaTime)
 	{
 		FVector location = GetActorLocation();
 		
-		FVector GlobalTargetLocation = GetTransform().TransformPosition(TargetLocation);
-		FVector direction = (GlobalTargetLocation - location).GetSafeNormal();
+		float totalDistance = (GlobalTargetLocation - GlobalStartLocation).Size();
+		float currentDistance = (location - GlobalStartLocation).Size();
+
+		if (currentDistance >= totalDistance)
+		{
+			FVector temp = GlobalStartLocation;
+			GlobalStartLocation = GlobalTargetLocation;
+			GlobalTargetLocation = temp;
+		}
+
+		FVector direction = (GlobalTargetLocation - GlobalStartLocation).GetSafeNormal();
 
 		location += direction * Speed * DeltaTime;
 		SetActorLocation(location);
