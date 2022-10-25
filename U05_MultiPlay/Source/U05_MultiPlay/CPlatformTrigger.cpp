@@ -1,4 +1,5 @@
 #include "CPlatformTrigger.h"
+#include "CMovingPlatform.h"
 #include "Components/BoxComponent.h"
 
 ACPlatformTrigger::ACPlatformTrigger()
@@ -19,11 +20,13 @@ void ACPlatformTrigger::BeginPlay()
 
 void ACPlatformTrigger::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("In"));
+	for (ACMovingPlatform* platform : PlatformsToTrigger)
+		platform->AddActiveTrigger();
 }
 
 void ACPlatformTrigger::OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Out"));
+	for (ACMovingPlatform* platform : PlatformsToTrigger)
+		platform->RemoveActiveTrigger();
 }
 

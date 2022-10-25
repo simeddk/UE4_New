@@ -33,24 +33,38 @@ void ACMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (HasAuthority())
+	if (ActiveTrigger > 0)
 	{
-		FVector location = GetActorLocation();
-		
-		float totalDistance = (GlobalTargetLocation - GlobalStartLocation).Size();
-		float currentDistance = (location - GlobalStartLocation).Size();
 
-		if (currentDistance >= totalDistance)
+		if (HasAuthority())
 		{
-			FVector temp = GlobalStartLocation;
-			GlobalStartLocation = GlobalTargetLocation;
-			GlobalTargetLocation = temp;
+			FVector location = GetActorLocation();
+
+			float totalDistance = (GlobalTargetLocation - GlobalStartLocation).Size();
+			float currentDistance = (location - GlobalStartLocation).Size();
+
+			if (currentDistance >= totalDistance)
+			{
+				FVector temp = GlobalStartLocation;
+				GlobalStartLocation = GlobalTargetLocation;
+				GlobalTargetLocation = temp;
+			}
+
+			FVector direction = (GlobalTargetLocation - GlobalStartLocation).GetSafeNormal();
+
+			location += direction * Speed * DeltaTime;
+			SetActorLocation(location);
 		}
-
-		FVector direction = (GlobalTargetLocation - GlobalStartLocation).GetSafeNormal();
-
-		location += direction * Speed * DeltaTime;
-		SetActorLocation(location);
 	}
 
+}
+
+void ACMovingPlatform::AddActiveTrigger()
+{
+	ActiveTrigger++;
+}
+
+void ACMovingPlatform::RemoveActiveTrigger()
+{
+	ActiveTrigger--;
 }

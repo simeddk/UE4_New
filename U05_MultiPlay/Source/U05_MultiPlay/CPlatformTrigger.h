@@ -26,4 +26,7 @@ private:
 	UFUNCTION()
 		void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+private:
+	UPROPERTY(EditAnywhere)
+		TArray<class ACMovingPlatform*> PlatformsToTrigger;
 };

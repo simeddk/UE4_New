@@ -15,9 +15,16 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+public:
+	void AddActiveTrigger();
+	void RemoveActiveTrigger();
+
 private:
 	UPROPERTY(EditAnywhere)
 		float Speed = 20.f;
+
+	UPROPERTY(EditAnywhere)
+		int ActiveTrigger = 1;
 
 	UPROPERTY(EditAnywhere, meta = (MakeEditWidget))
 		FVector TargetLocation;
