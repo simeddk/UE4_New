@@ -3,18 +3,21 @@
 #include "UObject/ConstructorHelpers.h" 
 #include "Blueprint/UserWidget.h"
 
+
 UCGameInstance::UCGameInstance(const FObjectInitializer& ObjectInitializer)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Constructor!!"));
 
-	//Todo. Build.cs 에 UMG 모듈 추가해야 함
 	ConstructorHelpers::FClassFinder<UUserWidget> menuBPClass(TEXT("WidgetBlueprint'/Game/Widgets/WB_MainMenu.WB_MainMenu_C'"));
-	UE_LOG(LogTemp, Warning, TEXT("Found Class : %s"), *menuBPClass.Class->GetName());
+	if (menuBPClass.Succeeded())
+		MenuClass = menuBPClass.Class;
 }
 
 void UCGameInstance::Init()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Init!!"));
+
+	
 }
 
 void UCGameInstance::Host()
@@ -37,4 +40,24 @@ void UCGameInstance::Join(const FString& InAddress)
 	APlayerController* controller = GetFirstLocalPlayerController();
 	if (controller == nullptr) return;
 	controller->ClientTravel(InAddress, ETravelType::TRAVEL_Absolute);
+}
+
+void UCGameInstance::LoadMenu()
+{
+	if (MenuClass == nullptr) return;
+
+	UUserWidget* menu = CreateWidget<UUserWidget>(this, MenuClass);
+	if (menu == nullptr) return;
+
+	menu->AddToViewport();
+
+	menu->bIsFocusable = true;
+
+	FInputModeUIOnly inputMode;
+	inputMode.SetWidgetToFocus(menu->TakeWidget());
+	inputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+
+	APlayerController* playerController = GetFirstLocalPlayerController();
+	playerController->SetInputMode(inputMode);
+	playerController->bShowMouseCursor = true;
 }
