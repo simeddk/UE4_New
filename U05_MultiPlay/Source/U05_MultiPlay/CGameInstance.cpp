@@ -2,12 +2,10 @@
 #include "Engine/Engine.h"
 #include "UObject/ConstructorHelpers.h" 
 #include "Blueprint/UserWidget.h"
-
+#include "MenuSystem/CMainMenu.h"
 
 UCGameInstance::UCGameInstance(const FObjectInitializer& ObjectInitializer)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Constructor!!"));
-
 	ConstructorHelpers::FClassFinder<UUserWidget> menuBPClass(TEXT("WidgetBlueprint'/Game/Widgets/WB_MainMenu.WB_MainMenu_C'"));
 	if (menuBPClass.Succeeded())
 		MenuClass = menuBPClass.Class;
@@ -16,12 +14,13 @@ UCGameInstance::UCGameInstance(const FObjectInitializer& ObjectInitializer)
 void UCGameInstance::Init()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Init!!"));
-
-	
 }
 
 void UCGameInstance::Host()
 {
+	if (!!Menu)
+		Menu->Teardown();
+
 	UEngine* engine = GetEngine();
 	if (engine == nullptr) return;
 	engine->AddOnScreenDebugMessage(0, 2, FColor::Green, TEXT("Host"));
@@ -33,6 +32,9 @@ void UCGameInstance::Host()
 
 void UCGameInstance::Join(const FString& InAddress)
 {
+	if (!!Menu)
+		Menu->Teardown();
+
 	UEngine* engine = GetEngine();
 	if (engine == nullptr) return;
 	engine->AddOnScreenDebugMessage(0, 2, FColor::Green, FString::Printf(TEXT("Join to %s"), *InAddress));
@@ -46,18 +48,8 @@ void UCGameInstance::LoadMenu()
 {
 	if (MenuClass == nullptr) return;
 
-	UUserWidget* menu = CreateWidget<UUserWidget>(this, MenuClass);
-	if (menu == nullptr) return;
-
-	menu->AddToViewport();
-
-	menu->bIsFocusable = true;
-
-	FInputModeUIOnly inputMode;
-	inputMode.SetWidgetToFocus(menu->TakeWidget());
-	inputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-
-	APlayerController* playerController = GetFirstLocalPlayerController();
-	playerController->SetInputMode(inputMode);
-	playerController->bShowMouseCursor = true;
+	Menu = CreateWidget<UCMainMenu>(this, MenuClass);
+	if (Menu == nullptr) return;
+	Menu->SetMenuInterface(this);
+	Menu->Setup();
 }

@@ -19,7 +19,7 @@ public:
 		void Host() override;
 
 	UFUNCTION(Exec)
-		void Join(const FString& InAddress);
+		void Join(const FString& InAddress) override;
 
 	UFUNCTION(BlueprintCallable, Exec)
 		void LoadMenu();
@@ -27,4 +27,5 @@ public:
 private:
 	TSubclassOf<class UUserWidget> MenuClass;
 
+	class UCMainMenu* Menu;
 };
