@@ -15,7 +15,8 @@ public class U05_MultiPlay : ModuleRules
 			"Engine",
 			"InputCore",
 			"HeadMountedDisplay",
-			"UMG" 
+			"UMG",
+			"OnlineSubSystem"
 		});
 	}
 }
