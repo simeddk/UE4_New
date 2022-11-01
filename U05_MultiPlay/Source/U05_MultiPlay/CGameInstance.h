@@ -29,6 +29,7 @@ public:
 		void InGameLoadMenu();
 
 	virtual void LoadMainMenu() override;
+	void RefreshServerList() override;
 
 private:
 	void OnCreateSessionCompleted(FName SessionName, bool bWasSuccessful);

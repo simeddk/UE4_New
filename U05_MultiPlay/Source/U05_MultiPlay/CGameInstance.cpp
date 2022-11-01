@@ -33,13 +33,6 @@ void UCGameInstance::Init()
 			SessionInterface->OnCreateSessionCompleteDelegates.AddUObject(this, &UCGameInstance::OnCreateSessionCompleted);
 			SessionInterface->OnDestroySessionCompleteDelegates.AddUObject(this, &UCGameInstance::OnDestroySessionCompleted);
 			SessionInterface->OnFindSessionsCompleteDelegates.AddUObject(this, &UCGameInstance::OnFindSessionCompleted);
-
-			SessionSearch = MakeShareable(new FOnlineSessionSearch());
-			if (SessionSearch.IsValid())
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Starting Find Session"));
-				SessionInterface->FindSessions(0, SessionSearch.ToSharedRef());
-			}
 		}
 	}
 	else
@@ -68,16 +61,19 @@ void UCGameInstance::Host()
 
 void UCGameInstance::Join(const FString& InAddress)
 {
-	if (!!Menu)
+	/*if (!!Menu)
 		Menu->Teardown();
-
+	 
 	UEngine* engine = GetEngine();
 	if (engine == nullptr) return;
 	engine->AddOnScreenDebugMessage(0, 2, FColor::Green, FString::Printf(TEXT("Join to %s"), *InAddress));
-
+	
 	APlayerController* controller = GetFirstLocalPlayerController();
 	if (controller == nullptr) return;
-	controller->ClientTravel(InAddress, ETravelType::TRAVEL_Absolute);
+	controller->ClientTravel(InAddress, ETravelType::TRAVEL_Absolute);*/
+
+	if (!!Menu)
+		Menu->SetServerList({"Lobby1", "Lobby2"});
 }
 
 void UCGameInstance::LoadMenu()
@@ -107,10 +103,19 @@ void UCGameInstance::LoadMainMenu()
 	controller->ClientTravel("/Game/Maps/MainMenu", ETravelType::TRAVEL_Absolute);
 }
 
+void UCGameInstance::RefreshServerList()
+{
+	SessionSearch = MakeShareable(new FOnlineSessionSearch());
+	if (SessionSearch.IsValid())
+	{
+		//SessionSearch->bIsLanQuery = true;
+		UE_LOG(LogTemp, Warning, TEXT("Starting Find Session"));
+		SessionInterface->FindSessions(0, SessionSearch.ToSharedRef());
+	}
+}
+
 void UCGameInstance::OnCreateSessionCompleted(FName SessionName, bool bWasSuccessful)
 {
-	UE_LOG(LogTemp, Error, TEXT("CREATED SESSION"));
-
 	if (bWasSuccessful == false)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Could not create session!!"));
@@ -133,15 +138,27 @@ void UCGameInstance::OnCreateSessionCompleted(FName SessionName, bool bWasSucces
 
 void UCGameInstance::OnDestroySessionCompleted(FName SessionName, bool bWasSuccessful)
 {
-	UE_LOG(LogTemp, Error, TEXT("DESTROYED SESSION"));
-
 	if (bWasSuccessful == true)
 		CreateSession();
 }
 
 void UCGameInstance::OnFindSessionCompleted(bool bWasSuccessful)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Finished Find Session"));
+	if (bWasSuccessful == true && SessionSearch.IsValid() && Menu != nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Finished Find Session"));
+		
+		TArray<FString> serverNames;
+		for (const FOnlineSessionSearchResult& searchResult : SessionSearch->SearchResults)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Found Session ID : %s"), *searchResult.GetSessionIdStr());
+			UE_LOG(LogTemp, Warning, TEXT("Ping : %d"), searchResult.PingInMs);
+
+			serverNames.Add(searchResult.GetSessionIdStr());
+		}
+
+		Menu->SetServerList(serverNames);
+	}
 }
 
 void UCGameInstance::CreateSession()
@@ -149,6 +166,10 @@ void UCGameInstance::CreateSession()
 	if (SessionInterface.IsValid())
 	{
 		FOnlineSessionSettings sessionSettings;
+		sessionSettings.bIsLANMatch = true;
+		sessionSettings.NumPublicConnections = 2;
+		sessionSettings.bShouldAdvertise = true;
+
 		SessionInterface->CreateSession(0, SESSION_NAME, sessionSettings);
 	}
 }

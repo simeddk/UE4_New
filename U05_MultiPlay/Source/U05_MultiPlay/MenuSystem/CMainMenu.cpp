@@ -1,7 +1,16 @@
 #include "CMainMenu.h"
+#include "CServerRow.h"
 #include "Components/Button.h"
 #include "Components/WidgetSwitcher.h"
 #include "Components/EditableTextBox.h"
+#include "Components/TextBlock.h"
+
+UCMainMenu::UCMainMenu(const FObjectInitializer& ObjectInitializer)
+{
+	ConstructorHelpers::FClassFinder<UUserWidget> serverRowClass(TEXT("/Game/Widgets/WB_ServerRow"));
+	if (serverRowClass.Succeeded())
+		ServerRowClass = serverRowClass.Class;
+}
 
 bool UCMainMenu::Initialize()
 {
@@ -32,13 +41,46 @@ void UCMainMenu::HostServer()
 		MenuInterface->Host();
 }
 
+void UCMainMenu::SetServerList(TArray<FString> InServerNames)
+{
+	UWorld* world = GetWorld();
+	if (world == nullptr) return;
+
+	ServerList->ClearChildren();
+
+	uint32 i = 0;
+	for (const FString& serverName : InServerNames)
+	{
+		UCServerRow* row = CreateWidget<UCServerRow>(world, ServerRowClass);
+		if (row == nullptr) return;
+
+		row->ServerName->SetText(FText::FromString(serverName));
+		row->SetUp(this, i++);
+
+		ServerList->AddChild(row);
+	}
+
+}
+
+void UCMainMenu::SetSelectedIndex(uint32 InIndex)
+{
+	SelectedIndex = InIndex;
+}
+
 void UCMainMenu::JoinServer()
 {
+	if (SelectedIndex.IsSet())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("SelectedIndex : %d"), SelectedIndex.GetValue());
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("SelectedIndex is not set"));
+	}
+
 	if (!!MenuInterface)
 	{
-		if (IPAddressFeild == nullptr) return;
-		const FString& address = IPAddressFeild->GetText().ToString();
-		MenuInterface->Join(address);
+		MenuInterface->Join("");
 	}
 }
 
@@ -46,6 +88,12 @@ void UCMainMenu::OpenJoinMenu()
 {
 	if (MenuSwitcher == nullptr) return;
 	if (JoinMenu == nullptr) return;
+
+	if (MenuInterface != nullptr)
+	{
+		MenuInterface->RefreshServerList();
+	}
+
 	MenuSwitcher->SetActiveWidget(JoinMenu);
 }
 
