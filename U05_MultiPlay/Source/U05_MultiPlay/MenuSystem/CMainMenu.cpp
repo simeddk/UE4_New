@@ -69,18 +69,14 @@ void UCMainMenu::SetSelectedIndex(uint32 InIndex)
 
 void UCMainMenu::JoinServer()
 {
-	if (SelectedIndex.IsSet())
+	if (SelectedIndex.IsSet() && !!MenuInterface)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("SelectedIndex : %d"), SelectedIndex.GetValue());
+		MenuInterface->Join(SelectedIndex.GetValue());
 	}
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("SelectedIndex is not set"));
-	}
-
-	if (!!MenuInterface)
-	{
-		MenuInterface->Join("");
 	}
 }
 
