@@ -6,6 +6,7 @@
 #include "OnlineSessionSettings.h"
 
 const static FName SESSION_NAME = TEXT("GameSession");
+const static FName SERVER_NAME_SETTINGS_KEY = TEXT("ServerName");
 
 UCGameInstance::UCGameInstance(const FObjectInitializer& ObjectInitializer)
 {
@@ -41,8 +42,10 @@ void UCGameInstance::Init()
 	}
 }
 
-void UCGameInstance::Host()
+void UCGameInstance::Host(FString ServerName)
 {
+	DesiredServerName = ServerName;
+
 	if (SessionInterface.IsValid())
 	{
 		auto exsistingSession = SessionInterface->GetNamedSession(SESSION_NAME);
@@ -143,19 +146,31 @@ void UCGameInstance::OnFindSessionCompleted(bool bWasSuccessful)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Finished Find Session"));
 		
-		TArray<FString> serverNames;
-		serverNames.Add("Chobo Man");
-		serverNames.Add("Gooso Man");
-		serverNames.Add("Zl Game");
+		TArray<FServerData> serverData;
 		for (const FOnlineSessionSearchResult& searchResult : SessionSearch->SearchResults)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Found Session ID : %s"), *searchResult.GetSessionIdStr());
 			UE_LOG(LogTemp, Warning, TEXT("Ping : %d"), searchResult.PingInMs);
 
-			serverNames.Add(searchResult.GetSessionIdStr());
+			FServerData data;
+			data.MaxPlayers = searchResult.Session.SessionSettings.NumPublicConnections;
+			data.CurrentPlayers = data.MaxPlayers - searchResult.Session.NumOpenPublicConnections;
+			data.HostUserName = searchResult.Session.OwningUserName;
+
+			FString serverName;
+			if (searchResult.Session.SessionSettings.Get(SERVER_NAME_SETTINGS_KEY, serverName))
+			{
+				data.Name = serverName;
+			}
+			else
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Server Name Not Found!!"));
+			}
+
+			serverData.Add(data);
 		}
 
-		Menu->SetServerList(serverNames);
+		Menu->SetServerList(serverData);
 	}
 }
 
@@ -182,10 +197,20 @@ void UCGameInstance::CreateSession()
 	if (SessionInterface.IsValid())
 	{
 		FOnlineSessionSettings sessionSettings;
-		sessionSettings.bIsLANMatch = false;
-		sessionSettings.NumPublicConnections = 2;
+		if (IOnlineSubsystem::Get()->GetSubsystemName() == "NULL")
+		{
+			sessionSettings.bIsLANMatch = true;
+		}
+		else
+		{
+			sessionSettings.bIsLANMatch = false;
+		}
+		sessionSettings.NumPublicConnections = 5;
 		sessionSettings.bShouldAdvertise = true;
 		sessionSettings.bUsesPresence = true;
+
+		sessionSettings.Set(SERVER_NAME_SETTINGS_KEY, DesiredServerName, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
+
 		SessionInterface->CreateSession(0, SESSION_NAME, sessionSettings);
 	}
 }

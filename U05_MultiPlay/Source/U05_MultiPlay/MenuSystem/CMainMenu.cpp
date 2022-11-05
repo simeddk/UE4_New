@@ -18,7 +18,13 @@ bool UCMainMenu::Initialize()
 	if (success == false) return false;
 
 	if (HostButton == nullptr) return false;
-	HostButton->OnClicked.AddDynamic(this, &UCMainMenu::HostServer);
+	HostButton->OnClicked.AddDynamic(this, &UCMainMenu::OpenHostMenu);
+
+	if (CancelHostMenuButton == nullptr) return false;
+	CancelHostMenuButton->OnClicked.AddDynamic(this, &UCMainMenu::OpenMainMenu);
+
+	if (ConfirmHostMenuButton == nullptr) return false;
+	ConfirmHostMenuButton->OnClicked.AddDynamic(this, &UCMainMenu::HostServer);
 
 	if (JoinButton == nullptr) return false;
 	JoinButton->OnClicked.AddDynamic(this, &UCMainMenu::OpenJoinMenu);
@@ -38,10 +44,13 @@ bool UCMainMenu::Initialize()
 void UCMainMenu::HostServer()
 {
 	if (!!MenuInterface)
-		MenuInterface->Host();
+	{
+		FString serverName = ServerHostName->Text.ToString();
+		MenuInterface->Host(serverName);
+	}
 }
 
-void UCMainMenu::SetServerList(TArray<FString> InServerNames)
+void UCMainMenu::SetServerList(TArray<FServerData> InServerDatas)
 {
 	UWorld* world = GetWorld();
 	if (world == nullptr) return;
@@ -49,12 +58,16 @@ void UCMainMenu::SetServerList(TArray<FString> InServerNames)
 	ServerList->ClearChildren();
 
 	uint32 i = 0;
-	for (const FString& serverName : InServerNames)
+	for (const FServerData& serverData : InServerDatas)
 	{
 		UCServerRow* row = CreateWidget<UCServerRow>(world, ServerRowClass);
 		if (row == nullptr) return;
 
-		row->ServerName->SetText(FText::FromString(serverName));
+		row->ServerName->SetText(FText::FromString(serverData.Name));
+		row->HostUser->SetText(FText::FromString(serverData.HostUserName));
+		FString fractionText = FString::Printf(TEXT("%d/%d"), serverData.CurrentPlayers, serverData.MaxPlayers);
+		row->ConnectedFraction->SetText(FText::FromString(fractionText));
+
 		row->SetUp(this, i++);
 
 		ServerList->AddChild(row);
@@ -65,6 +78,7 @@ void UCMainMenu::SetServerList(TArray<FString> InServerNames)
 void UCMainMenu::SetSelectedIndex(uint32 InIndex)
 {
 	SelectedIndex = InIndex;
+	SelectServerRow();
 }
 
 void UCMainMenu::JoinServer()
@@ -93,6 +107,14 @@ void UCMainMenu::OpenJoinMenu()
 	MenuSwitcher->SetActiveWidget(JoinMenu);
 }
 
+
+void UCMainMenu::OpenHostMenu()
+{
+	if (MenuSwitcher == nullptr) return;
+	if (HostMenu == nullptr) return;
+	MenuSwitcher->SetActiveWidget(HostMenu);
+}
+
 void UCMainMenu::OpenMainMenu()
 {
 	if (MenuSwitcher == nullptr) return;
@@ -109,4 +131,14 @@ void UCMainMenu::QuitPressed()
 	if (controller == nullptr) return;
 
 	controller->ConsoleCommand("Quit");
+}
+
+void UCMainMenu::SelectServerRow()
+{
+	for (int32 i = 0; i < ServerList->GetChildrenCount(); i++)
+	{
+		UCServerRow* serverRow = Cast<UCServerRow>(ServerList->GetChildAt(i));
+		if (!!serverRow)
+			serverRow->Selected = (SelectedIndex.IsSet() && i == SelectedIndex.GetValue());
+	}
 }

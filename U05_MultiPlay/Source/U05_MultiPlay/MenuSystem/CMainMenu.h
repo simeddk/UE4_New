@@ -5,6 +5,19 @@
 #include "CMenuWidget.h"
 #include "CMainMenu.generated.h"
 
+USTRUCT()
+struct FServerData
+{
+	GENERATED_BODY()
+
+public:
+	FString Name;
+	uint16 CurrentPlayers;
+	uint16 MaxPlayers;
+	FString HostUserName;
+};
+
+
 UCLASS()
 class U05_MULTIPLAY_API UCMainMenu : public UCMenuWidget
 {
@@ -13,7 +26,7 @@ class U05_MULTIPLAY_API UCMainMenu : public UCMenuWidget
 public:
 	UCMainMenu(const FObjectInitializer& ObjectInitializer);
 
-	void SetServerList(TArray<FString> InServerNames);
+	void SetServerList(TArray<FServerData> InServerDatas);
 	void SetSelectedIndex(uint32 InIndex);
 
 protected:
@@ -30,6 +43,9 @@ private:
 		void OpenJoinMenu();
 
 	UFUNCTION()
+		void OpenHostMenu();
+
+	UFUNCTION()
 		void OpenMainMenu();
 
 	UFUNCTION()
@@ -37,6 +53,9 @@ private:
 
 private:
 	TSubclassOf<class UUserWidget> ServerRowClass;
+
+private:
+	void SelectServerRow();
 
 private:
 	UPROPERTY(meta = (BindWidget))
@@ -65,6 +84,18 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 		class UButton* QuitButton;
+
+	UPROPERTY(meta = (BindWidget))
+		class UWidget* HostMenu;
+
+	UPROPERTY(meta = (BindWidget))
+		class UEditableTextBox* ServerHostName;
+
+	UPROPERTY(meta = (BindWidget))
+		class UButton* CancelHostMenuButton;
+
+	UPROPERTY(meta = (BindWidget))
+		class UButton* ConfirmHostMenuButton;
 
 private:
 	TOptional<uint32> SelectedIndex;
