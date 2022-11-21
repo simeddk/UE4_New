@@ -34,6 +34,9 @@ void UCGameInstance::Init()
 			SessionInterface->OnDestroySessionCompleteDelegates.AddUObject(this, &UCGameInstance::OnDestroySessionCompleted);
 			SessionInterface->OnFindSessionsCompleteDelegates.AddUObject(this, &UCGameInstance::OnFindSessionCompleted);
 			SessionInterface->OnJoinSessionCompleteDelegates.AddUObject(this, &UCGameInstance::OnJoinSessionCompleted);
+
+			if (GEngine != nullptr)
+				GEngine->OnNetworkFailure().AddUObject(this, &UCGameInstance::OnNetworkFailure);
 		}
 	}
 	else
@@ -112,6 +115,12 @@ void UCGameInstance::RefreshServerList()
 	}
 }
 
+void UCGameInstance::StartSession()
+{
+	if (!!SessionInterface)
+		SessionInterface->StartSession(SESSION_NAME);
+}
+
 void UCGameInstance::OnCreateSessionCompleted(FName SessionName, bool bWasSuccessful)
 {
 	if (bWasSuccessful == false)
@@ -131,7 +140,7 @@ void UCGameInstance::OnCreateSessionCompleted(FName SessionName, bool bWasSucces
 
 	UWorld* world = GetWorld();
 	if (world == nullptr) return;
-	world->ServerTravel("/Game/Maps/Play?listen");
+	world->ServerTravel("/Game/Maps/Lobby?listen");
 }
 
 void UCGameInstance::OnDestroySessionCompleted(FName SessionName, bool bWasSuccessful)
@@ -192,6 +201,11 @@ void UCGameInstance::OnJoinSessionCompleted(FName SessionName, EOnJoinSessionCom
 	playerController->ClientTravel(address, ETravelType::TRAVEL_Absolute);
 }
 
+void UCGameInstance::OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString)
+{
+	LoadMainMenu();
+}
+
 void UCGameInstance::CreateSession()
 {
 	if (SessionInterface.IsValid())
@@ -205,7 +219,7 @@ void UCGameInstance::CreateSession()
 		{
 			sessionSettings.bIsLANMatch = false;
 		}
-		sessionSettings.NumPublicConnections = 5;
+		sessionSettings.NumPublicConnections = 2;
 		sessionSettings.bShouldAdvertise = true;
 		sessionSettings.bUsesPresence = true;
 

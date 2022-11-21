@@ -32,11 +32,15 @@ public:
 	virtual void LoadMainMenu() override;
 	void RefreshServerList() override;
 
+	void StartSession();
+	
+
 private:
 	void OnCreateSessionCompleted(FName SessionName, bool bWasSuccessful);
 	void OnDestroySessionCompleted(FName SessionName, bool bWasSuccessful);
 	void OnFindSessionCompleted(bool bWasSuccessful);
 	void OnJoinSessionCompleted(FName SessionName, EOnJoinSessionCompleteResult::Type InResult);
+	void OnNetworkFailure(UWorld* World, UNetDriver* NetDriver, ENetworkFailure::Type FailureType, const FString& ErrorString);
 
 	void CreateSession();
 
