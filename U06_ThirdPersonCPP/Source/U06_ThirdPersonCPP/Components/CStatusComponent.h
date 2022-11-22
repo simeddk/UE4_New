@@ -13,6 +13,9 @@ class U06_THIRDPERSONCPP_API UCStatusComponent : public UActorComponent
 public:	
 	UCStatusComponent();
 
+	FORCEINLINE float GetMaxHealth() { return MaxHealth; }
+	FORCEINLINE float GetCurrentHealth() { return CurrentHealth; }
+
 	FORCEINLINE float GetSneakSpeed() { return SneakSpeed; }
 	FORCEINLINE float GetWalkSpeed() { return WalkSpeed; }
 	FORCEINLINE float GetRunSpeed() { return RunSpeed; }
@@ -22,7 +25,13 @@ public:
 	void SetMove();
 	void SetStop();
 
+	void IncreaseHealth(float InAmount);
+	void DecreaseHealth(float InAmount);
+
 private:
+	UPROPERTY(EditAnywhere, Category = "Health")
+		float MaxHealth = 100;
+
 	UPROPERTY(EditAnywhere, Category = "Speed")
 		float SneakSpeed = 200;
 
@@ -37,6 +46,6 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
+	float CurrentHealth;
 	bool bCanMove = true;
-		
 };

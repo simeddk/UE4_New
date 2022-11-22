@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "ICharacter.h"
+#include "Components/CStateComponent.h"
 #include "CEnemy.generated.h"
 
 UCLASS()
@@ -12,6 +13,8 @@ class U06_THIRDPERSONCPP_API ACEnemy : public ACharacter, public IICharacter
 
 public:
 	ACEnemy();
+
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 private:
 	UPROPERTY(VisibleDefaultsOnly)
@@ -40,8 +43,17 @@ public:
 	virtual void ChangeBodyColor(FLinearColor InColor) override;
 
 private:
+	UFUNCTION()
+		void OnStateTypeChanged(EStateType InPrevType, EStateType InNewType);
+
+private:
+	void Hitted();
+	void Dead();
+
+private:
 	class UMaterialInstanceDynamic* BodyMaterial;
 	class UMaterialInstanceDynamic* LogoMaterial;
 
-
+private:
+	class ACharacter* Attacker;
 };

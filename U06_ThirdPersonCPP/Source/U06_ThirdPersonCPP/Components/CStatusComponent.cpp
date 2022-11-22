@@ -10,7 +10,7 @@ void UCStatusComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+	CurrentHealth = MaxHealth;
 }
 
 void UCStatusComponent::SetMove()
@@ -21,4 +21,16 @@ void UCStatusComponent::SetMove()
 void UCStatusComponent::SetStop()
 {
 	bCanMove = false;
+}
+
+void UCStatusComponent::IncreaseHealth(float InAmount)
+{
+	CurrentHealth += InAmount;
+	CurrentHealth = FMath::Clamp(CurrentHealth, 0.f, MaxHealth);
+}
+
+void UCStatusComponent::DecreaseHealth(float InAmount)
+{
+	CurrentHealth -= InAmount;
+	CurrentHealth = FMath::Clamp(CurrentHealth, 0.f, MaxHealth);
 }
