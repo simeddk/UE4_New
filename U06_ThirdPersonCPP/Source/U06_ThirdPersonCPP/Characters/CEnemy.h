@@ -17,6 +17,10 @@ public:
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 
 private:
+	UPROPERTY(EditAnywhere)
+		float LaunchValue = 25.f;
+
+private:
 	UPROPERTY(VisibleDefaultsOnly)
 		class UWidgetComponent* NameWidget;
 
@@ -41,6 +45,9 @@ protected:
 
 public:
 	virtual void ChangeBodyColor(FLinearColor InColor) override;
+	
+	UFUNCTION()
+		void RestoreLogoColor();
 
 private:
 	UFUNCTION()
@@ -50,10 +57,14 @@ private:
 	void Hitted();
 	void Dead();
 
+	UFUNCTION()
+		void End_Dead();
+
 private:
 	class UMaterialInstanceDynamic* BodyMaterial;
 	class UMaterialInstanceDynamic* LogoMaterial;
 
 private:
 	class ACharacter* Attacker;
+	float Damage;
 };

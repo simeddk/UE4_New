@@ -39,6 +39,16 @@ void ACAttachment::AttachTo(FName InSocketName)
 	);
 }
 
+void ACAttachment::AttachToCollision(USceneComponent* InComponent, FName InSocketName)
+{
+	InComponent->AttachToComponent
+	(
+		OwnerCharacter->GetMesh(),
+		FAttachmentTransformRules(EAttachmentRule::KeepRelative, true),
+		InSocketName
+	);
+}
+
 void ACAttachment::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	CheckTrue(OwnerCharacter == OtherActor);

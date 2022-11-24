@@ -29,6 +29,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void AttachTo(FName InSocketName);
 
+	UFUNCTION(BlueprintCallable)
+		void AttachToCollision(class USceneComponent* InComponent, FName InSocketName);
+
 	UFUNCTION(BlueprintImplementableEvent)
 		void OnEquip();
 

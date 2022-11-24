@@ -2,6 +2,7 @@
 #include "Global.h"
 #include "Actions/CActionData.h"
 #include "Actions/CEquipment.h"
+#include "Actions/CAttachment.h"
 #include "Actions/CDoAction.h"
 #include "GameFramework/Character.h"
 
@@ -103,5 +104,39 @@ void UCActionComponent::DoAction()
 
 		if (!!doAction)
 			doAction->DoAction();
+	}
+}
+
+void UCActionComponent::Dead()
+{
+	OffAllCollisios();
+}
+
+void UCActionComponent::End_Dead()
+{
+	for (int32 i = 0; i < (int32)EActionType::Max; i++)
+	{
+		if (!!Datas[i] && !!Datas[i]->GetAttachment())
+			Datas[i]->GetAttachment()->Destroy();
+
+		if (!!Datas[i] && !!Datas[i]->GetEquipment())
+			Datas[i]->GetEquipment()->Destroy();
+
+		if (!!Datas[i] && !!Datas[i]->GetDoAction())
+			Datas[i]->GetDoAction()->Destroy();
+	}
+}
+
+void UCActionComponent::OffAllCollisios()
+{
+	for (UCActionData* data : Datas)
+	{
+		if (data == nullptr)
+			continue;
+
+		if (data->GetAttachment() == nullptr)
+			continue;
+
+		data->GetAttachment()->OffCollision();
 	}
 }

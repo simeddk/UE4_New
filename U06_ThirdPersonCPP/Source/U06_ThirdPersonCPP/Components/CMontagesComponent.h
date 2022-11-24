@@ -38,6 +38,8 @@ public:
 
 	void PlayRoll();
 	void PlayBackStep();
+	void PlayHitted();
+	void PlayDead();
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "DataTable")

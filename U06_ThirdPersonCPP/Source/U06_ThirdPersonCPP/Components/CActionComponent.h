@@ -65,6 +65,11 @@ private:
 public:
 	void DoAction();
 
+	void Dead();
+	void End_Dead();
+
+	void OffAllCollisios();
+
 protected:
 	virtual void BeginPlay() override;
 
