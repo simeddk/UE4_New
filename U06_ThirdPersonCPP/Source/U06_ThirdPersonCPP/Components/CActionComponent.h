@@ -65,6 +65,10 @@ private:
 public:
 	void DoAction();
 
+	void DoOnAim();
+	void DoOffAim();
+
+
 	void Dead();
 	void End_Dead();
 
