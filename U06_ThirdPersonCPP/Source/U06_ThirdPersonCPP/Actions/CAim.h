@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Components/TimelineComponent.h"
 #include "CAim.generated.h"
 
 UCLASS()
@@ -13,6 +14,7 @@ public:
 	UCAim();
 
 	FORCEINLINE bool IsAvaliable() { return SpringArm != nullptr && Camera != nullptr; }
+	FORCEINLINE bool IsZooming() { return bZooming; }
 
 public:
 	void BeginPlay(class ACharacter* InOwnerCharacter);
@@ -22,9 +24,22 @@ public:
 	void Off();
 
 private:
+	UFUNCTION()
+		void Zooming(float Output);
+
+private:
+	UPROPERTY(EditAnywhere)
+		class UCurveFloat* Curve;
+
+private:
 	class ACharacter* OwnerCharacter;
 	class USpringArmComponent* SpringArm;
 	class UCameraComponent* Camera;
 
 	bool bZooming;
+
+	FTimeline Timeline;
+	FOnTimelineFloat OnTimelineFloat;
+
+	class ACHUD* Hud;
 };

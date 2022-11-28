@@ -18,6 +18,9 @@ void ACDoAction_MagicBall::DoAction()
 {
 	Super::DoAction();
 
+	if (Aim->IsAvaliable())
+		CheckFalse(Aim->IsZooming());
+
 	CheckFalse(State->IsIdleMode());
 	State->SetActionMode();
 
@@ -37,6 +40,9 @@ void ACDoAction_MagicBall::End_DoAction()
 
 void ACDoAction_MagicBall::Tick(float DeltaTime)
 {
+	Super::Tick(DeltaTime);
+
+	Aim->Tick(DeltaTime);
 }
 
 void ACDoAction_MagicBall::OnAim()
