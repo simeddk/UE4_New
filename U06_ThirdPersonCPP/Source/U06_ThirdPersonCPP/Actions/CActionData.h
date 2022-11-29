@@ -46,6 +46,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<class UCameraShake> ShakeClass;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
+		TSubclassOf<class ACThrow> ThrowClass;
 };
 
 UCLASS()
@@ -82,6 +85,8 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 		TArray<FDoActionData> DoActionDatas;
+
+	
 
 
 private:
